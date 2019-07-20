@@ -18,3 +18,9 @@ justify-content: flex-start;
 .selected {
     border: 1.5px solid black;
 }
+
+#grid {
+    height: 300px;
+    width: 300px;
+    border: black solid 2px;
+}

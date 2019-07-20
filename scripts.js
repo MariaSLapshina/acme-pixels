@@ -24,19 +24,19 @@ const removeColumn = () => {
 
 document.querySelector('#addRow').addEventListener('click', ev => {
     addRow();
-    console.log(grid);
+    renderGrid();
 });
 document.querySelector('#removeRow').addEventListener('click', ev => {
     removeRow();
-    console.log(grid);
+    renderGrid();
 });
 document.querySelector('#addCol').addEventListener('click', ev => {
     addColumn();
-    console.log(grid);
+    renderGrid();
 });
 document.querySelector('#removeCol').addEventListener('click', ev => {
     removeColumn();
-    console.log(grid);
+    renderGrid();
 });
 
 const allColors = [...document.querySelectorAll('#colors *')];
@@ -51,6 +51,15 @@ allColors.forEach((colorDiv) => {
 });
 
 const renderGrid = () => {
-    
+    grid.forEach(el => {
+        const griddiv = document.querySelector('#grid');
+        const curRow = griddiv.appendChild(document.createElement('div'));
+        curRow.classList.add('row');
+       el.forEach(cell => {
+        const curCol = curRow.appendChild(document.createElement('div'));
+        curCol.classList.add('cell');
+       })
+    })
 }
 
+renderGrid();
