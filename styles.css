@@ -1,0 +1,8 @@
+#flex{
+display: flex;
+justify-content: flex-start;
+}
+#controls {
+    width:50%;
+    background-color:rgb(211, 207, 207);
+}
