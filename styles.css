@@ -16,11 +16,23 @@ justify-content: flex-start;
 }
 
 .selected {
-    border: 1.5px solid black;
+    border: 1.5px solid black !important;
 }
 
 #grid {
     height: 300px;
     width: 300px;
     border: black solid 2px;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    flex: 1;
+    display: flex;
+}
+
+.cell {
+    border: 0.5px solid black;
+    flex: 1;
 }

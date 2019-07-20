@@ -22,21 +22,44 @@ const removeColumn = () => {
     columns--;
 }
 
+const getSelectedColor = () => {
+    let colors = [...document.querySelectorAll('#colors div')]
+    return colors.find((el) => el.classList.contains('selected')).id;
+}
+
+const renderGrid = () => {
+    const griddiv = document.querySelector('#grid');
+    [...document.querySelectorAll('.row')].forEach((row) => griddiv.removeChild(row));
+    grid.forEach(el => {
+        const curRow = griddiv.appendChild(document.createElement('div'));
+        curRow.classList.add('row');
+       el.forEach(cell => {
+        const curCell = curRow.appendChild(document.createElement('div'));
+        curCell.classList.add('cell');
+        curCell.addEventListener('click')
+       });
+    });
+}
+
 document.querySelector('#addRow').addEventListener('click', ev => {
     addRow();
     renderGrid();
+    console.log(grid);
 });
 document.querySelector('#removeRow').addEventListener('click', ev => {
     removeRow();
     renderGrid();
+    console.log(grid);
 });
 document.querySelector('#addCol').addEventListener('click', ev => {
     addColumn();
     renderGrid();
+    console.log(grid);
 });
 document.querySelector('#removeCol').addEventListener('click', ev => {
     removeColumn();
     renderGrid();
+    console.log(grid);
 });
 
 const allColors = [...document.querySelectorAll('#colors *')];
@@ -49,17 +72,5 @@ allColors.forEach((colorDiv) => {
         ev.target.classList.add('selected');
     });
 });
-
-const renderGrid = () => {
-    grid.forEach(el => {
-        const griddiv = document.querySelector('#grid');
-        const curRow = griddiv.appendChild(document.createElement('div'));
-        curRow.classList.add('row');
-       el.forEach(cell => {
-        const curCol = curRow.appendChild(document.createElement('div'));
-        curCol.classList.add('cell');
-       })
-    })
-}
 
 renderGrid();
