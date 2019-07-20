@@ -1,6 +1,6 @@
-const grid = [['']];
-let rows = 1;
-let columns = 1;
+const grid = localStorage.getItem('gridArray') ? JSON.parse(localStorage.getItem('gridArray')) : [['']];
+let rows = localStorage.getItem('rows') ? localStorage.getItem('rows') * 1 : 1;
+let columns = localStorage.getItem('columns') ? localStorage.getItem('columns') * 1 : 1;
 
 const addRow = () => {
     grid.push((new Array(columns)).fill(''));
@@ -8,8 +8,11 @@ const addRow = () => {
 }
 
 const removeRow = () => {
-    grid.pop();
-    rows--;
+    if (rows > 1) {
+        grid.pop();
+        rows--;
+    }
+    
 }
 
 const addColumn = () =>{
@@ -18,11 +21,12 @@ const addColumn = () =>{
 }
 
 const removeColumn = () => {
-    grid.forEach(curEl => curEl.pop());
-    columns--;
+    if (columns > 1) {
+        grid.forEach(curEl => curEl.pop());
+        columns--;
+    }
+    
 }
-
-
 
 const getSelectedColor = () => {
     let colors = [...document.querySelectorAll('#colors div')]
@@ -31,7 +35,11 @@ const getSelectedColor = () => {
 
 
 const addColor = (row,column) => {
-grid[row][column] = getSelectedColor();
+    if (grid[row][column] === getSelectedColor()) {
+        grid[row][column] = '';
+    } else {
+        grid[row][column] = getSelectedColor();
+    }
 }
 
 const renderGrid = () => {
@@ -50,6 +58,9 @@ const renderGrid = () => {
         curCell.style.backgroundColor = grid[rowIdx][colIdx];
        });
     });
+    localStorage.setItem('gridArray', JSON.stringify(grid));
+    localStorage.setItem('rows', rows);
+    localStorage.setItem('columns', columns);
 }
 
 document.querySelector('#addRow').addEventListener('click', ev => {
