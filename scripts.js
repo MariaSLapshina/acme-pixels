@@ -22,21 +22,32 @@ const removeColumn = () => {
     columns--;
 }
 
+
+
 const getSelectedColor = () => {
     let colors = [...document.querySelectorAll('#colors div')]
     return colors.find((el) => el.classList.contains('selected')).id;
 }
 
+
+const addColor = (row,column) => {
+grid[row][column] = getSelectedColor();
+}
+
 const renderGrid = () => {
     const griddiv = document.querySelector('#grid');
     [...document.querySelectorAll('.row')].forEach((row) => griddiv.removeChild(row));
-    grid.forEach(el => {
+    grid.forEach((el,rowIdx) => {
         const curRow = griddiv.appendChild(document.createElement('div'));
         curRow.classList.add('row');
-       el.forEach(cell => {
+       el.forEach((cell,colIdx) => {
         const curCell = curRow.appendChild(document.createElement('div'));
         curCell.classList.add('cell');
-        curCell.addEventListener('click')
+        curCell.addEventListener('click',ev =>{
+            addColor(rowIdx,colIdx);
+            renderGrid();
+        })
+        curCell.style.backgroundColor = grid[rowIdx][colIdx];
        });
     });
 }

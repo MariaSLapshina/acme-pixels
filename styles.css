@@ -36,3 +36,12 @@ justify-content: flex-start;
     border: 0.5px solid black;
     flex: 1;
 }
+#red {
+    background-color:red;
+}
+#dodgerblue{
+    background-color: dodgerblue
+}
+#yellow {
+    background-color: yellow;
+}
