@@ -11,7 +11,7 @@ body {
 }
 
 #controls {
-    flex: 1;
+    flex: 2;
     background-color:rgb(211, 207, 207);
     padding: 0 2rem;
     display: flex;
@@ -35,13 +35,13 @@ body {
 }
 
 #canvas {
-    flex: 1;
+    flex: 3;
     margin-left: 1rem;
 }
 
 #grid {
     height: 300px;
-    width: 400px;
+    width: 85%;
     border: black solid 2px;
     display: flex;
     flex-direction: column;
@@ -72,3 +72,14 @@ body {
 #blue {
     background-color: blue;
 }
+/*
+@media(max-width:800px) {
+    #grid {
+        width: 85%;
+    }
+
+    #controls {
+        padding: 0 1rem;
+    }
+}
+*/
